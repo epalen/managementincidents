@@ -46,3 +46,39 @@ Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('ver
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Incidents Route(s)
+ */
+Route::get('/incidents', 'IncidentController@index')->name('incidents');
+
+
+Route::get('incident/create', [
+    'as'			=>	'incident.create',
+    'uses'			=>	'IncidentController@create'
+]);
+
+Route::post('incident/store', [
+    'as'			=>	'incident.store',
+    'uses'			=>	'IncidentController@store'
+]);
+
+Route::get('show/incident/{id}', [
+    'as'			=>	'incident.show',
+    'uses'			=>	'IncidentController@show'
+]);
+
+Route::get('edit/incident/{id}', [
+    'as'			=>	'usuarios.editar',
+    'uses'			=>	'IncidentController@edit'
+]);
+
+Route::patch('update/incident/{id}', [
+    'as'			=>	'incident.update',
+    'uses'			=>	'IncidentController@update'
+]);
+
+Route::get('delete/incident/{id}', [
+    'as'			=>	'incident.delete',
+    'uses'			=>	'IncidentController@destroy'
+]);
