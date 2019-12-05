@@ -22,4 +22,10 @@ class Incident extends Model
         return $this->belongsTo('App\Category');
 
     }
+
+    public function scopeSearch($query, $name)
+    {
+        return $query
+            ->where('name', 'like', '%' .$name. '%');
+    }
 }

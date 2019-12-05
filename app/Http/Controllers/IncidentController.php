@@ -12,9 +12,12 @@ class IncidentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $data = Incident::search($request->get('criteria'))->orderBy('id','DESC')->paginate(8);
+
+        return view('incidents.index',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 8);
     }
 
     /**
@@ -24,7 +27,7 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        //
+        return view('incidents.create');
     }
 
     /**
