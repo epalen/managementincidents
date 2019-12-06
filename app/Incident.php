@@ -18,9 +18,7 @@ class Incident extends Model
     ];
 
     public function categories(){
-
         return $this->belongsTo('App\Category');
-
     }
 
     public function scopeSearch($query, $name)

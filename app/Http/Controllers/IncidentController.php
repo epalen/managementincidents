@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Incident;
+use App\Category;
 use Illuminate\Http\Request;
 
 class IncidentController extends Controller
@@ -27,7 +28,9 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        return view('incidents.create');
+        $categories = Category::orderBy('id', 'asc')->pluck('name', 'id');
+
+        return view('incidents.create', compact('categories'));
     }
 
     /**
@@ -38,7 +41,12 @@ class IncidentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+
+        $incidents = Incident::create($input);
+
+        return redirect()->action('IncidentController@index')
+                        ->with('success','Incidente registrado...');
     }
 
     /**
