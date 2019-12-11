@@ -69,7 +69,7 @@ Route::get('show/incident/{id}', [
 ]);
 
 Route::get('edit/incident/{id}', [
-    'as'			=>	'usuarios.editar',
+    'as'			=>	'incident.edit',
     'uses'			=>	'IncidentController@edit'
 ]);
 

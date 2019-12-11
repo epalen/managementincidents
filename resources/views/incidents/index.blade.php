@@ -28,23 +28,22 @@
                                         <th scope="col">Title</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Date</th>
+                                        <th scope="col">User</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($data as $incidets)
+                                    @foreach ($data as $incidents)
                                         <tr>
                                             <th scope="row">{{ ++$i }}</th>
                                             <td>{{ $incidents->name }}</td>
                                             <td>{{ $incidents->status }}</td>
-                                            <td>{{ $incidents->created_at }}</td>
+                                            <td>{{ $incidents->created_at->format('d-m-Y') }}</td>
+                                            <td>{{ $incidents->users->name }}</td>
                                             <td>
-                                                <a class="btn btn-default" href="#" data-toggle="tooltip" data-placement="top" title="Edit incident">
-                                                    <i class="fa fa-edit"></i> 
-                                                </a>
-                                                <a class="btn btn-default" href="#" data-toggle="tooltip" data-placement="top" title="Delete incident">
-                                                    <i class="fa fa-trash"></i> 
-                                                </a>
+                                                <a class="btn btn-info" href="{{ route('incident.show', $incidents->id) }}" data-toggle="tooltip" data-placement="top" title="Show incident">Show</a>
+                                                <a class="btn btn-primary" href="{{ route('incident.edit', $incidents->id) }}" data-toggle="tooltip" data-placement="top" title="Edit incident">Edit</a>
+                                                <a class="btn btn-warning" href="{{ route('incident.delete', $incidents->id) }}" data-toggle="tooltip" data-placement="top" title="Delete incident">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

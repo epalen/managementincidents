@@ -10,7 +10,7 @@
 
                     <div class="card-body">
 
-                        {!! Form::open(array('route' => 'incident.store','method' => 'POST', 'enctype' => 'multipart/form-data')) !!}
+                        {!! Form::model($incidents, ['method' => 'PATCH', 'route' => ['incident.update', $incidents->id]]) !!}
                             <input type="hidden" name="status" value="In progress">
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                             <div class="container">

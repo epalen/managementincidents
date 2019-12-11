@@ -43,6 +43,8 @@ class IncidentController extends Controller
     {
         $input = $request->all();
 
+        //dd($input);
+
         $incidents = Incident::create($input);
 
         return redirect()->action('IncidentController@index')
@@ -66,9 +68,13 @@ class IncidentController extends Controller
      * @param  \App\Incident  $incident
      * @return \Illuminate\Http\Response
      */
-    public function edit(Incident $incident)
+    public function edit($id)
     {
-        //
+        $incidents = Incident::find($id);
+
+        $categories = Category::orderBy('id', 'asc')->pluck('name', 'id');
+
+        return view('incidents.edit', compact('incidents', 'categories'));
     }
 
     /**
@@ -78,9 +84,9 @@ class IncidentController extends Controller
      * @param  \App\Incident  $incident
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Incident $incident)
+    public function update(Request $request, $id)
     {
-        //
+        $incidents = Incident::find($id);
     }
 
     /**
