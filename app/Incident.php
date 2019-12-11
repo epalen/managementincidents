@@ -14,11 +14,15 @@ class Incident extends Model
     protected $table = 'incidents';
 
     protected $fillable = [
-        'name', 'category_id', 'status', 'priority', 'description'
+        'name', 'category_id', 'status', 'priority', 'description', 'user_id'
     ];
 
     public function categories(){
         return $this->belongsTo('App\Category');
+    }
+
+    public function users(){
+        return $this->belongsTo('App\User', 'user_id');
     }
 
     public function scopeSearch($query, $name)
